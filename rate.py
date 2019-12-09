@@ -10,7 +10,7 @@ algorithm = surprise.SVD()
 
 # sample random trainset and testset
 # test set is made of 25% of the ratings.
-trainset, testset = surprise.model_selection.train_test_split(data, test_size=.25)
+trainset, testset = surprise.model_selection.train_test_split(data, test_size=.10)
 
 # Train the algorithm on the trainset, and predict ratings for the testset
 algorithm.fit(trainset)
@@ -24,7 +24,7 @@ surprise.accuracy.mae(predictions)
 
 # Run 5-fold cross-validation and print result
 # Calculate Root Mean Square Error, Mean absolute Error
-surprise.model_selection.cross_validate(algorithm, data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
+surprise.model_selection.cross_validate(algorithm, data, measures=['RMSE', 'MAE'], cv=10, verbose=True)
 
 #  RMSE values close to 1 show  how concentrated the data is around the line of best fit
 #  It is basically average error where big errors are heavily penalized (because they are squared).
